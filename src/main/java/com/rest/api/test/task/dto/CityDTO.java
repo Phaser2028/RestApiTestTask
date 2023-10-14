@@ -14,14 +14,19 @@ public class CityDTO {
     @JacksonXmlProperty(localName = "name")
     private String name;
     @JacksonXmlProperty(localName = "latitude")
-    private Float latitude;
+    private Double latitude;
     @JacksonXmlProperty(localName = "longitude")
-    private Float longitude;
+    private Double longitude;
 
-    public CityDTO(String name, Float latitude, Float longitude) {
+    public CityDTO(String name, Double latitude, Double longitude) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+
+    public CityDTO(String name) {
+        this.name = name;
     }
 
     public CityDTO() {
@@ -35,19 +40,20 @@ public class CityDTO {
         this.name = name;
     }
 
-    public Float getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Float latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public Float getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Float longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
+
 }

@@ -17,13 +17,13 @@ public class Distance {
     @ManyToOne
     @JoinColumn(name = "to_city",referencedColumnName="name")
     private City toCity;
-    @Column
-    private Float distance;
+    @Column(name = "distance")
+    private Double distance;
 
     public Distance() {
     }
 
-    public Distance(Long id, City fromCity, City toCity, Float distance) {
+    public Distance(Long id, City fromCity, City toCity, Double distance) {
         this.id = id;
         this.fromCity = fromCity;
         this.toCity = toCity;
@@ -54,11 +54,19 @@ public class Distance {
         this.toCity = toCity;
     }
 
-    public Float getDistance() {
+    public Double getDistance() {
         return distance;
     }
 
-    public void setDistance(Float distance) {
+    public void setDistance(Double distance) {
         this.distance = distance;
+    }
+
+    @Override
+    public String toString() {
+        return "Distance{" +
+                "fromCity=" + fromCity.getName() +
+                ", toCity=" + toCity.getName() +
+                '}';
     }
 }

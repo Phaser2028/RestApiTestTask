@@ -46,6 +46,9 @@ public class CityService {
             List<City> cities = data.getCities().stream().map(mapper::cityDTOToCity).toList();
             List<Distance> distances = data.getDistances().stream().map(mapper::distanceDTOToDistance).toList();
 
+            System.out.println(data.getDistances());
+            System.out.println(distances);
+
             cityRepository.saveAll(cities);
             distanceRepository.saveAll(distances);
 

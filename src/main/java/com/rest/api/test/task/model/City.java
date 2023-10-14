@@ -9,13 +9,13 @@ public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "id")
     private Long id;
-    @Column
+    @Column(name = "name")
     private String name;
-    @Column
+    @Column(name = "latitude")
     private Float latitude;
-    @Column
+    @Column(name = "longitude")
     private Float longitude;
 
     public City() {

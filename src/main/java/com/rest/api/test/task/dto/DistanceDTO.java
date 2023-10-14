@@ -3,48 +3,56 @@ package com.rest.api.test.task.dto;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-import javax.xml.bind.annotation.XmlRootElement;
+
 
 @JacksonXmlRootElement(localName = "Distance")
 public class DistanceDTO {
 
     @JacksonXmlProperty(localName = "fromCity")
-    private String fromCity;
+    private CityDTO fromCity;
     @JacksonXmlProperty(localName = "toCity")
-    private String toCity;
+    private CityDTO toCity;
     @JacksonXmlProperty(localName = "distance")
-    private Float distance;
+    private Double distance;
 
     public DistanceDTO() {
     }
 
-    public DistanceDTO(String fromCity, String toCity, Float distance) {
+    public DistanceDTO(CityDTO fromCity, CityDTO toCity, Double distance) {
         this.fromCity = fromCity;
         this.toCity = toCity;
         this.distance = distance;
     }
 
-    public String getFromCity() {
+    public CityDTO getFromCity() {
         return fromCity;
     }
 
-    public void setFromCity(String fromCity) {
+    public void setFromCity(CityDTO fromCity) {
         this.fromCity = fromCity;
     }
 
-    public String getToCity() {
+    public CityDTO getToCity() {
         return toCity;
     }
 
-    public void setToCity(String toCity) {
+    public void setToCity(CityDTO toCity) {
         this.toCity = toCity;
     }
 
-    public Float getDistance() {
+    public Double getDistance() {
         return distance;
     }
 
-    public void setDistance(Float distance) {
+    public void setDistance(Double distance) {
         this.distance = distance;
+    }
+
+    @Override
+    public String toString() {
+        return "DistanceDTO{" +
+                "fromCity=" + fromCity.getName() +
+                ", toCity=" + toCity.getName() +
+                '}';
     }
 }

@@ -24,6 +24,7 @@ public class Mapper {
     }
 
     public Distance distanceDTOToDistance(DistanceDTO distanceDTO) {
+
         return objectMapper.convertValue(distanceDTO, Distance.class);
     }
 
