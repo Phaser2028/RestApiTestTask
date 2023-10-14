@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Dmitriy
+      changes:
+        - createTable:
+            tableName: Distance
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: from_city
+                  type: VARCHAR(100)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: to_city
+                  type: VARCHAR(100)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: distance
+                  type: float
+              - addForeignKeyConstraint:
+                  baseTableName: Distance
+                  baseColumnNames: [ from_city ]
+                  referencedTableName: City
+                  referencedColumnNames: [ name ]
+                  constraintName: FK_Distance_FromCity
+              - addForeignKeyConstraint:
+                  baseTableName: Distance
+                  baseColumnNames: [ to_city ]
+                  referencedTableName: City
+                  referencedColumnNames: [ name ]
+                  constraintName: FK_Distance_ToCity

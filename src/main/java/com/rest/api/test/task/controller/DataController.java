@@ -33,25 +33,14 @@ public class DataController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadXmlData(MultipartFile file) throws IOException, JAXBException {
-        try (InputStream inputStream = file.getInputStream()) {
-            XmlMapper xmlMapper = new XmlMapper();
-            CitiesData data = xmlMapper.readValue(inputStream, CitiesData.class);
-
-            List<CityDTO> cities = data.getCities();
-            List<DistanceDTO> distances = data.getDistances();
-
-            return ResponseEntity.ok(cities);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    public ResponseEntity<?> uploadData(MultipartFile file){
+        cityService.saveData(file);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @GetMapping("/getCities")
-    public ResponseEntity<HttpStatus> getCities(){
-
-        return ResponseEntity.ok(HttpStatus.OK);
+    public ResponseEntity<?> getCities(){
+        return ResponseEntity.ok(cityService.getAllCities());
     }
 
 
