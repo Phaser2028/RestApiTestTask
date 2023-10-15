@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "Distance")
-public class Distance{
+public class Distance implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -60,4 +60,5 @@ public class Distance{
     public void setDistance(Double distance) {
         this.distance = distance;
     }
+
 }

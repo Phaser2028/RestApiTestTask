@@ -7,7 +7,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 @JacksonXmlRootElement(localName = "Distance")
 public class DistanceDTO {
-
     @JacksonXmlProperty(localName = "fromCity")
     private String fromCity;
     @JacksonXmlProperty(localName = "toCity")

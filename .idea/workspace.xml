@@ -4,21 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="07849448-4bea-4c7f-bfba-ac5b4a1ab62c" name="Changes" comment="Third commit">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="07849448-4bea-4c7f-bfba-ac5b4a1ab62c" name="Changes" comment="Check commit">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/dto/CitySummary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/service/DataService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/controller/CalculatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/controller/CalculatorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/controller/DataController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/dto/DistanceDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/dto/DistanceDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/mapper/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/mapper/Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/model/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/model/City.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/model/Distance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/model/Distance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/service/CityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/service/CityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changeset/create-city-distance.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/changeset/create-distance-table.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changeset/create-distance-city.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/changeset/create-city-table.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/service/CityService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/service/DistanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rest/api/test/task/service/CalculateService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changeset/create-city-table.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/liquibase/changeset/create-city-table.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changeset/create-distance-table.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/liquibase/changeset/create-distance-table.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/liquibase/db.changelog-master.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +33,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -90,7 +89,8 @@
       <workItem from="1697225786325" duration="1877000" />
       <workItem from="1697229366675" duration="11000" />
       <workItem from="1697278588173" duration="33875000" />
-      <workItem from="1697326780346" duration="2361000" />
+      <workItem from="1697326780346" duration="9119000" />
+      <workItem from="1697369520691" duration="302000" />
     </task>
     <task id="LOCAL-00001" summary="Redo a working mapper">
       <created>1697299599255</created>
@@ -113,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697309631230</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Check commit">
+      <created>1697329160700</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1697329160700</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,6 +141,7 @@
     <MESSAGE value="Redo a working mapper" />
     <MESSAGE value="Init" />
     <MESSAGE value="Third commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Third commit" />
+    <MESSAGE value="Check commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Check commit" />
   </component>
 </project>
