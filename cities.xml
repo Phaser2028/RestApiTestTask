@@ -1,0 +1,44 @@
+<Data>
+<Cities>
+  <City>
+    <name>New York</name>
+    <latitude>40.7128</latitude>
+    <longitude>-74.0060</longitude>
+  </City>
+  <City>
+    <name>Los Angeles</name>
+    <latitude>34.0522</latitude>
+    <longitude>-118.2437</longitude>
+  </City>
+  <City>
+    <name>South carolina</name>
+    <latitude>33.8361</latitude>
+    <longitude>-81.1637</longitude>
+  </City>
+  <City>
+    <name>California</name>
+    <latitude>114</latitude>
+    <longitude>124</longitude>
+  </City>
+  <City>
+    <name>Washington</name>
+    <latitude>38.89</latitude>
+    <longitude>-77.02</longitude>
+  </City>
+  <City>
+    <name>Minneapolis</name>
+    <latitude>44.96</latitude>
+    <longitude>-93.27</longitude>
+  </City>
+  <City>
+    <name>Edinburgh</name>
+    <latitude>55.93</latitude>
+    <longitude>-3.18</longitude>
+  </City>
+  <City>
+    <name>Stockholm</name>
+    <latitude>50.087</latitude>
+    <longitude>14.421</longitude>
+  </City>
+</Cities>
+</Data>
