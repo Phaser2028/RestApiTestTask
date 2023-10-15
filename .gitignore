@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+/mvnw
+/HELP.md
+/src/main/java/com/rest/api/test/task/model/Distance.java
+/mvnw.cmd
+/RestApiTestTask.iml
+/src/test/
