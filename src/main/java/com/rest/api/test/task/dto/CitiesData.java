@@ -13,7 +13,6 @@ public class CitiesData {
     @JacksonXmlProperty(localName = "Distances")
     private List<DistanceDTO> distances;
 
-
     public CitiesData() {
     }
 

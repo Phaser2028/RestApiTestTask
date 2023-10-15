@@ -1,30 +1,38 @@
 package com.rest.api.test.task.controller;
 
 
-import com.rest.api.test.task.dto.CityDTO;
-
-import org.springframework.http.HttpStatus;
+import com.rest.api.test.task.exception.CityNotFoundException;
+import com.rest.api.test.task.model.DistanceRequest;
+import com.rest.api.test.task.service.CalculateService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Arrays;
 
 @RestController
 public class CalculatorController {
+    private final CalculateService calculateService;
+
+    @Autowired
+    public CalculatorController(CalculateService calculateService) {
+        this.calculateService = calculateService;
+    }
 
     @PostMapping("/calculate")
-    public ResponseEntity<?> calculate(String calculationType, @RequestBody List<CityDTO> fromCity,@RequestBody List<CityDTO> toCity){
-        if(calculationType.equals("Crowflight")){
-            
-        } else if (calculationType.equals("Distance Matrix")) {
-            
-        } else if (calculationType.equals("All")) {
+    public ResponseEntity<?> calculate(@RequestBody DistanceRequest distanceRequest) {
 
+        try {
+            if (distanceRequest.getCalculationType().equals("Crowflight")) {
+                return ResponseEntity.ok(calculateService.calculateCrowFlightDistances(distanceRequest));
+            } else if (distanceRequest.getCalculationType().equals("Distance matrix")) {
+                return ResponseEntity.ok(Arrays.asList(calculateService.calculateMatrixDistances(distanceRequest)));
+            }
+        } catch (CityNotFoundException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.badRequest().body("Bad request");
     }
 }

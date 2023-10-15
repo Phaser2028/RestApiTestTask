@@ -12,9 +12,11 @@ public class Distance implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-    @JoinColumn(name = "from_city",referencedColumnName="name")
+
+    @Column(name = "from_city")
     private String fromCity;
-    @JoinColumn(name = "to_city",referencedColumnName="name")
+
+    @Column(name = "to_city")
     private String toCity;
     @Column(name = "distance")
     private Double distance;
@@ -60,5 +62,4 @@ public class Distance implements Serializable {
     public void setDistance(Double distance) {
         this.distance = distance;
     }
-
 }
