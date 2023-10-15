@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Mapper {
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     public  CityDTO cityToCityDTO(City city) {
         return objectMapper.convertValue(city, CityDTO.class);

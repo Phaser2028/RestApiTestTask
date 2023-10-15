@@ -34,7 +34,7 @@ public class DataController {
 
     @PostMapping("/upload")
     public ResponseEntity<?> uploadData(MultipartFile file){
-        cityService.saveData(file);
+        cityService.parseData(file);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 

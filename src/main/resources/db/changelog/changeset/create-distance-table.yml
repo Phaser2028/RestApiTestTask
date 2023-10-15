@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Dmitriy
+      changes:
+        - createTable:
+            tableName: Distance
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: from_city
+                  type: VARCHAR(100)
+              - column:
+                  name: to_city
+                  type: VARCHAR(100)
+              - column:
+                  name: distance
+                  type: float
+

@@ -9,34 +9,34 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 public class DistanceDTO {
 
     @JacksonXmlProperty(localName = "fromCity")
-    private CityDTO fromCity;
+    private String fromCity;
     @JacksonXmlProperty(localName = "toCity")
-    private CityDTO toCity;
+    private String toCity;
     @JacksonXmlProperty(localName = "distance")
     private Double distance;
 
     public DistanceDTO() {
     }
 
-    public DistanceDTO(CityDTO fromCity, CityDTO toCity, Double distance) {
+    public DistanceDTO(String fromCity, String toCity, Double distance) {
         this.fromCity = fromCity;
         this.toCity = toCity;
         this.distance = distance;
     }
 
-    public CityDTO getFromCity() {
+    public String getFromCity() {
         return fromCity;
     }
 
-    public void setFromCity(CityDTO fromCity) {
+    public void setFromCity(String fromCity) {
         this.fromCity = fromCity;
     }
 
-    public CityDTO getToCity() {
+    public String getToCity() {
         return toCity;
     }
 
-    public void setToCity(CityDTO toCity) {
+    public void setToCity(String toCity) {
         this.toCity = toCity;
     }
 
@@ -46,13 +46,5 @@ public class DistanceDTO {
 
     public void setDistance(Double distance) {
         this.distance = distance;
-    }
-
-    @Override
-    public String toString() {
-        return "DistanceDTO{" +
-                "fromCity=" + fromCity.getName() +
-                ", toCity=" + toCity.getName() +
-                '}';
     }
 }

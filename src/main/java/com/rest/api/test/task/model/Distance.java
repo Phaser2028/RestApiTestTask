@@ -2,28 +2,27 @@ package com.rest.api.test.task.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 
 @Entity
 @Table(name = "Distance")
-public class Distance {
+public class Distance{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-
-    @ManyToOne
     @JoinColumn(name = "from_city",referencedColumnName="name")
-    private City fromCity;
-    @ManyToOne
+    private String fromCity;
     @JoinColumn(name = "to_city",referencedColumnName="name")
-    private City toCity;
+    private String toCity;
     @Column(name = "distance")
     private Double distance;
 
     public Distance() {
     }
 
-    public Distance(Long id, City fromCity, City toCity, Double distance) {
+    public Distance(Long id, String fromCity, String toCity, Double distance) {
         this.id = id;
         this.fromCity = fromCity;
         this.toCity = toCity;
@@ -38,19 +37,19 @@ public class Distance {
         this.id = id;
     }
 
-    public City getFromCity() {
+    public String getFromCity() {
         return fromCity;
     }
 
-    public void setFromCity(City fromCity) {
+    public void setFromCity(String fromCity) {
         this.fromCity = fromCity;
     }
 
-    public City getToCity() {
+    public String getToCity() {
         return toCity;
     }
 
-    public void setToCity(City toCity) {
+    public void setToCity(String toCity) {
         this.toCity = toCity;
     }
 
@@ -60,13 +59,5 @@ public class Distance {
 
     public void setDistance(Double distance) {
         this.distance = distance;
-    }
-
-    @Override
-    public String toString() {
-        return "Distance{" +
-                "fromCity=" + fromCity.getName() +
-                ", toCity=" + toCity.getName() +
-                '}';
     }
 }

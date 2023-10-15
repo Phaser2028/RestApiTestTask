@@ -25,15 +25,3 @@ databaseChangeLog:
               - column:
                   name: longitude
                   type: float
-              - addForeignKeyConstraint:
-                  baseTableName: City
-                  baseColumnNames: [ name ]
-                  referencedTableName: Distance
-                  referencedColumnNames: [ from_city ]
-                  constraintName: FK_City_FromCity
-              - addForeignKeyConstraint:
-                  baseTableName: City
-                  baseColumnNames: [ name ]
-                  referencedTableName: Distance
-                  referencedColumnNames: [ to_city ]
-                  constraintName: FK_City_ToCity
