@@ -1,41 +1,35 @@
 package com.rest.api.test.task.dto;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-
-
-
-@JacksonXmlRootElement(localName = "Distance")
 public class DistanceDTO {
-    @JacksonXmlProperty(localName = "fromCity")
-    private String fromCity;
-    @JacksonXmlProperty(localName = "toCity")
-    private String toCity;
-    @JacksonXmlProperty(localName = "distance")
+
+    private CityDTO fromCity;
+
+    private CityDTO  toCity;
+
     private Double distance;
 
     public DistanceDTO() {
     }
 
-    public DistanceDTO(String fromCity, String toCity, Double distance) {
+    public DistanceDTO(CityDTO fromCity, CityDTO toCity, Double distance) {
         this.fromCity = fromCity;
         this.toCity = toCity;
         this.distance = distance;
     }
 
-    public String getFromCity() {
+    public CityDTO getFromCity() {
         return fromCity;
     }
 
-    public void setFromCity(String fromCity) {
+    public void setFromCity(CityDTO fromCity) {
         this.fromCity = fromCity;
     }
 
-    public String getToCity() {
+    public CityDTO getToCity() {
         return toCity;
     }
 
-    public void setToCity(String toCity) {
+    public void setToCity(CityDTO toCity) {
         this.toCity = toCity;
     }
 
