@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -29,13 +28,13 @@ public class DataController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadData(MultipartFile file){
+    public ResponseEntity<HttpStatus> uploadData(MultipartFile file){
         dataService.saveData(file);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @GetMapping("/getCities")
-    public ResponseEntity<?> getCities(){
+    public ResponseEntity<List<CitySummary>> getCities(){
         List<City> cities = dataService.getAllCities();
 
         List<CitySummary> citySummaries = cities.stream()
@@ -45,9 +44,5 @@ public class DataController {
 
 
     }
-
-
-
-
 
 }
