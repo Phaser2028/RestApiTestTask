@@ -14,11 +14,19 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: from_city
-                  type: VARCHAR(100)
+                  name: from_city_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_from_city
+                    references: city(id)
               - column:
-                  name: to_city
-                  type: VARCHAR(100)
+                  name: to_city_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_to_city
+                    references: city(id)
               - column:
                   name: distance
                   type: float
