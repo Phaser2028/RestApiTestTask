@@ -20,39 +20,36 @@ public class CalculateService {
     @Autowired
     private DistanceRepository distanceRepository;
 
-
-    public List<Double> calculateCrowFlightDistances(DistanceRequest distanceRequest) throws CityNotFoundException {
-        List<Double> crowFlightDistances = new ArrayList<>();
+    public List<Distance> calculateCrowFlightDistances(DistanceRequest distanceRequest) throws CityNotFoundException {
+        List<Distance> crowFlightDistances = new ArrayList<>();
         List<City> fromCities = dataService.getCitiesByName(distanceRequest.getFromCities());
         List<City> toCities = dataService.getCitiesByName(distanceRequest.getToCities());
 
         for (City fromCity : fromCities) {
 
             Distance distanceToDatabase = new Distance();
-            distanceToDatabase.setFromCity(fromCity.getName());
+            distanceToDatabase.setFromCity(fromCity);
 
             for (City toCity : toCities) {
                 double distance = crowFlight(fromCity.getLatitude(), fromCity.getLongitude(), toCity.getLatitude(), toCity.getLongitude());
 
-                distanceToDatabase.setToCity(toCity.getName());
+                distanceToDatabase.setToCity(toCity);
                 distanceToDatabase.setDistance(distance);
-
+                crowFlightDistances.add(distanceToDatabase);
                 distanceRepository.save(distanceToDatabase);
-
-                crowFlightDistances.add(distance);
             }
         }
 
         return crowFlightDistances;
     }
 
-    public Double[][] calculateMatrixDistances(DistanceRequest distanceRequest) throws CityNotFoundException {
+    public List<Distance> calculateMatrixDistances(DistanceRequest distanceRequest) throws CityNotFoundException {
         List<City> fromCities = dataService.getCitiesByName(distanceRequest.getFromCities());
         List<City> toCities = dataService.getCitiesByName(distanceRequest.getToCities());
         int fromSize = fromCities.size();
         int toSize = toCities.size();
 
-        Double[][] distanceMatrix = new Double[fromSize][toSize];
+        List<Distance> result = new ArrayList<>();
 
 
         for (int i = 0; i < fromSize; i++) {
@@ -62,18 +59,18 @@ public class CalculateService {
                 double distance = crowFlight(fromCity.getLatitude(), fromCity.getLongitude(), toCity.getLatitude(), toCity.getLongitude());
 
                 Distance distanceToDatabase = new Distance();
-                distanceToDatabase.setFromCity(fromCity.getName());
-                distanceToDatabase.setToCity(toCity.getName());
+                distanceToDatabase.setFromCity(fromCity);
+                distanceToDatabase.setToCity(toCity);
                 distanceToDatabase.setDistance(distance);
 
                 distanceRepository.save(distanceToDatabase);
 
 
-                distanceMatrix[i][j] = distance;
+                result.add(distanceToDatabase);
             }
         }
 
-        return distanceMatrix;
+        return result;
     }
 
 
