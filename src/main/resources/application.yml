@@ -24,3 +24,8 @@ spring:
     user: root
     password: root
     database-change-log-lock-table: mychangeloglocktable
+
+server:
+  error:
+    include-message: always
+    #include-stacktrace: always
