@@ -29,7 +29,7 @@ public class DataService {
         this.mapper = mapper;
     }
 
-    public List<City> getAllCities(){
+    public List<City> getAllCities() {
         return cityRepository.findAll();
     }
 
@@ -39,19 +39,18 @@ public class DataService {
         for (String s : cities) {
             if (cityRepository.findByName(s).isPresent()) {
                 result.add(cityRepository.findByName(s).get());
-            }else {
-                throw new CityNotFoundException(String.format("City with name %s not found.",s));
+            } else{
+                throw new CityNotFoundException(String.format("City with name %s not found.", s));
             }
         }
         return result;
     }
 
 
+    public void saveData(MultipartFile file) {
 
-     public void saveData(MultipartFile file){
-
-         try (InputStream inputStream = file.getInputStream()) {
-             XmlMapper xmlMapper = new XmlMapper();
+        try (InputStream inputStream = file.getInputStream()) {
+            XmlMapper xmlMapper = new XmlMapper();
             CitiesData data = xmlMapper.readValue(inputStream, CitiesData.class);
 
 
@@ -59,48 +58,39 @@ public class DataService {
             List<City> newCities = new ArrayList<>();
 
 
-
             for (City city : cities) {
-                 boolean existsInDatabase = getAllCities().stream()
-                         .anyMatch(x -> x.getName().equals(city.getName()));
+                boolean existsInDatabase = getAllCities().stream()
+                        .anyMatch(x -> x.getName().equals(city.getName()));
 
-                 if (!existsInDatabase) {
-                     newCities.add(city);
-                 }
-             }
-
+                if (!existsInDatabase) {
+                    newCities.add(city);
+                }
+            }
 
             cityRepository.saveAll(newCities);
 
+            if (data.getDistances() != null) {
+                List<Distance> distances = data.getDistances().stream().map(mapper::distanceDTOToDistance).toList();
+                List<Distance> newDistances = new ArrayList<>();
 
+                for (Distance distance : distances) {
+                    boolean existsFromCity = distanceRepository.findAll().stream()
+                            .anyMatch(x -> x.getFromCity().equals(distance.getFromCity()));
 
-             if(data.getDistances()!=null) {
-                 List<Distance> distances = data.getDistances().stream().map(mapper::distanceDTOToDistance).toList();
-                 List<Distance> newDistances = new ArrayList<>();
+                    boolean existsToCity = distanceRepository.findAll().stream()
+                            .anyMatch(x -> x.getToCity().equals(distance.getToCity()));
 
-                 for (Distance distance : distances) {
-                     boolean existsFromCity = distanceRepository.findAll().stream()
-                             .anyMatch(x -> x.getFromCity().equals(distance.getFromCity()));
+                    if (!(existsToCity && existsFromCity)) {
+                        newDistances.add(distance);
+                    }
+                }
 
-                     boolean existsToCity = distanceRepository.findAll().stream()
-                             .anyMatch(x -> x.getToCity().equals(distance.getToCity()));
+                distanceRepository.saveAll(newDistances);
+            }
 
-                     if (!(existsToCity&&existsFromCity)) {
-                         newDistances.add(distance);
-                     }
-                 }
-
-                 distanceRepository.saveAll(newDistances);
-             }
-
-
-
-
-
-
-         } catch (Exception e) {
-             e.printStackTrace();
-         }
-     }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
