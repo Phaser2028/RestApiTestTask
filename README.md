@@ -19,4 +19,5 @@ RestApi application for calculating distances between cities.
 - All: performs the calculation according to two types.
 
 - Query that throws an exception
-![bandicam 2023-10-18 23-12-20-885](https://github.com/Phaser2028/RestApiTestTask/assets/43641188/5a01dc8f-0260-4c7c-bcaf-739d66de20f6)
+![bandicam 2023-10-19 22-54-35-653](https://github.com/Phaser2028/RestApiTestTask/assets/43641188/2d22d453-0dfd-45d8-aaf0-46be88895209)
+
