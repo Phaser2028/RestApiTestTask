@@ -6,14 +6,16 @@ import com.rest.api.test.task.exception.CityNotFoundException;
 import com.rest.api.test.task.mapper.Mapper;
 import com.rest.api.test.task.model.DistanceRequest;
 import com.rest.api.test.task.service.CalculateService;
+import com.rest.api.test.task.util.CityErrorResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,19 +39,17 @@ public class CalculatorController {
         List<DistanceDTO> resultsDistanceMatrix;
         List<DistanceDTO> resultsCrowFlight;
 
+        if (distanceRequest.getCalculationType().equals("Crowflight")) {
 
-        try {
-            if (distanceRequest.getCalculationType().equals("Crowflight")) {
+            resultsCrowFlight = calculateService.calculateCrowFlightDistances(distanceRequest).stream()
+                    .map(mapper::distanceToDistanceDTO).collect(Collectors.toList());
+            result.put("Crowflight", resultsCrowFlight);
 
-                resultsCrowFlight = calculateService.calculateCrowFlightDistances(distanceRequest).stream()
-                        .map(mapper::distanceToDistanceDTO).collect(Collectors.toList());
-                result.put("Crowflight", resultsCrowFlight);
+            return ResponseEntity.ok(result);
 
-                return ResponseEntity.ok(result);
+        } else if (distanceRequest.getCalculationType().equals("Distance matrix")) {
 
-            } else if (distanceRequest.getCalculationType().equals("Distance matrix")) {
-
-                resultsDistanceMatrix = calculateService.calculateMatrixDistances(distanceRequest).stream()
+            resultsDistanceMatrix = calculateService.calculateMatrixDistances(distanceRequest).stream()
                         .map(mapper::distanceToDistanceDTO).collect(Collectors.toList());
                 result.put("Distance matrix", resultsDistanceMatrix);
 
@@ -66,19 +66,23 @@ public class CalculatorController {
                 result.put("Distance matrix", resultsDistanceMatrix);
 
 
-                return ResponseEntity.ok(result);
+            return ResponseEntity.ok(result);
 
 
-            }else {
-                result.put("Error", "Invalid calculation type");
-                return ResponseEntity.badRequest().body(result);
-            }
-
-        } catch (CityNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-            //throw new ResponseStatusException(HttpStatus.BAD_REQUEST, City not found, e);
+        } else {
+            result.put("Error", "Invalid calculation type");
+            return ResponseEntity.badRequest().body(result);
         }
+    }
 
+    @ExceptionHandler
+    private ResponseEntity<CityErrorResponse> handleException(CityNotFoundException exception) {
+        CityErrorResponse response = new CityErrorResponse(
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
 }
